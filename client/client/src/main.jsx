@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+//Importerar huvudkomponenten och alla vyer (sidor)
 import App from "./App.jsx";
 import Products from "./views/Products.jsx";
 import ProductDetail from "./views/ProductDetail.jsx";
@@ -11,7 +12,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-
+// Skapar ett tema med färger, typografi och styling
 const theme = createTheme({
   palette: {
     mode: "light",
@@ -69,6 +70,8 @@ h2: {
   }
 });
 
+//Skapar routing för applikationen
+//Vilka komponenter som ska visas på olika URL:er
 const router = createBrowserRouter([
   {
     path: "/",
@@ -97,7 +100,7 @@ const router = createBrowserRouter([
     ]
   }
 ]);
-
+//Renderar hela applikationen i rootelementet
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>

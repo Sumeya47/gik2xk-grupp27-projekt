@@ -1,3 +1,5 @@
+// Den här komponenten visar en produkt i detaljvy
+// Används i ProductDetail vyn
 import {
   Box,
   Card,
@@ -13,7 +15,7 @@ import { addToCart } from "../service/CartService";
 
 
 function ProductLarge({ product }) {
- 
+ //Räknar snitt betyg
   const avgRating =
     product.Ratings && product.Ratings.length > 0
       ? product.Ratings.reduce((sum, r) => sum + r.value, 0) /
@@ -37,7 +39,7 @@ function ProductLarge({ product }) {
   return (
     <Paper sx={{ my: 4, p: 4, borderRadius: 3 }} elevation={3}>
       <Card elevation={0}>
-        
+       {/*  bild */}
         <CardMedia
           component="img"
           image={product.imageUrl || placeholderImage}
@@ -46,17 +48,17 @@ function ProductLarge({ product }) {
         />
 
         <CardContent>
-         
+         {/* titel */}
           <Typography variant="h4" gutterBottom>
             {product.title}
           </Typography>
 
-     
+          {/* pris */}
           <Typography variant="h5" color="primary" gutterBottom>
             {product.price} kr
           </Typography>
 
-         
+          {/* rating */}
           <Box display="flex" alignItems="center" gap={1} mb={2}>
             <Rating value={avgRating} precision={0.5} readOnly />
             <Typography variant="body2">
@@ -64,12 +66,12 @@ function ProductLarge({ product }) {
             </Typography>
           </Box>
 
-        
+         {/* beskrivning */}
           <Typography variant="body1" sx={{ mb: 3 }}>
             {product.description}
           </Typography>
 
-       
+       {/* knapp för att lägg i produkt i kundvagn med funktionen "handleAddToCart" */}
           <Button variant="contained" size="large" onClick={handleAddToCart}>
             Lägg i varukorg
           </Button>

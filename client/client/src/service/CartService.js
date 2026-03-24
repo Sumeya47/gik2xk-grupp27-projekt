@@ -1,3 +1,6 @@
+// Den här filen hanterar API-anrop till backend för kundvagnen
+// Metoderna motsvarar backendens cartService
+// Här använder vi axios för att kommunicera med servern
 import axios from "./api";
 
 //hämta kundvagn

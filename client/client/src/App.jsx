@@ -10,7 +10,7 @@ import {
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import logo from "./assets/Image20260324192702.png"
 
-
+//Design för header
 function App() {
   return (
     <>
@@ -19,6 +19,7 @@ function App() {
           <Toolbar>
             <Typography variant="h1" component="div" sx={{ flexGrow: 1 }}>
               <Link to="/">   
+              {/* Bild som vår logotyp som tar användaren till Product.jsx */}
               <img
                   src={logo}
                   alt="Pure Candle"
@@ -26,9 +27,11 @@ function App() {
                 />
               </Link>
             </Typography>
+           {/*  Knapp till ProductEdit vyn */}
             <Button color="inherit">
               <Link to="/products/new">Lägg till produkt</Link>
             </Button>
+            {/* knapp till Cart vyn */}
             <Button color="inherit" component={Link} to="/cart" startIcon={<AddShoppingCartIcon />}>
               Varukorg
             </Button>

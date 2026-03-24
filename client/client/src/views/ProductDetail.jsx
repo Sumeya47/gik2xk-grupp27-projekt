@@ -1,3 +1,5 @@
+// Den här vyn ansvarar för att visa en enskild produkts detaljer
+//Vyn kombinerar flera komponenter (ProductLarge, RatingForm)
 import ProductLarge from "../components/ProductLarge";
 import RatingForm from "../components/RatingForm";
 import Rating from "@mui/material/Rating";
@@ -19,6 +21,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 
 function ProductDetailPage() {
+  // Data hämtas dynamiskt baserat på URL-parametern (id)
   const { id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
@@ -27,18 +30,18 @@ function ProductDetailPage() {
   const [open, setOpen] = useState(true);
 
   const message = location.state?.message;
-
+//Hämta betygen för vald produkt
   const fetchProduct = () => {
     getOne(id).then((data) => setProduct(data));
   };
-  //
+  //Admin ska kunna ta bort en produkt
   const handleDelete = async () => {
     if (!window.confirm("Är du säker att du vill ta bort produkten?")) return;
 
     await remove(product.id);
     navigate("/", { replace: true });
   };
-
+// Hämtar aktuell produkt från backend
   useEffect(() => {
     fetchProduct();
   }, [id]);
@@ -128,11 +131,6 @@ function ProductDetailPage() {
           <Typography variant="h4" gutterBottom>
             Betyg
           </Typography>
-
-{/*           <RatingForm
-            product={product}
-            refresh={fetchProduct}
-          /> */}
         </Box>
       </Container>
     </>

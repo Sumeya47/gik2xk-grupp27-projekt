@@ -1,3 +1,4 @@
+// Här är en komponent som visar en produkt som finns ProductList
 import {
   Box,
   Button,
@@ -17,14 +18,14 @@ import { addToCart } from "../service/CartService";
 function ProductCard({ product }) {
   const navigate = useNavigate();
   const user = 2;
-
+//Räknar snitt betyg
   const avgRating =
     product.Ratings && product.Ratings.length > 0
       ? product.Ratings.reduce((sum, r) => sum + r.value, 0) /
         product.Ratings.length
       : product.avgRating || 0;
 
-
+/* Funktion för att lägga till i kundvagen när man trycker "Lägg i varukorg" */
   const handleAddToCart = async () => {
   if (!user) {
     alert("Du måste vara inloggad för att lägga till i kundvagnen");
@@ -56,23 +57,23 @@ function ProductCard({ product }) {
       }}
     >
 
-      
+      {/* bild */}
       <CardMedia
         component="img"
         image={product.imageUrl || placeholderImage}
         alt={product.title}
         sx={{ objectFit: "cover", height: 400}}
       />
-
+      {/* titel */}
       <CardContent sx={{ flexGrow: 1 }}>
         <Typography variant="h5" gutterBottom>
           {product.title}
         </Typography>
-
+      {/* pris */}
         <Typography variant="h6" color="primary">
           {product.price} kr
         </Typography>
-
+      {/* rating */}
         <Box display="flex" alignItems="center" gap={1} mt={1}>
           <Rating value={avgRating} precision={0.5} readOnly />
           <Typography variant="body2">
@@ -80,7 +81,7 @@ function ProductCard({ product }) {
           </Typography>
         </Box>
       </CardContent>
-
+      {/* En knapp som leder till vyn ProductDetail */}
       <CardActions sx={{ display: "flex", justifyContent: "space-between", p: 2 }}>
         <Button
           variant="outlined"
@@ -89,7 +90,7 @@ function ProductCard({ product }) {
         >
           Visa
         </Button>
-
+      {/* En knapp som lägger till i kundvagnen */}
         <Button
           variant="contained"
           startIcon={<AddShoppingCartIcon />}

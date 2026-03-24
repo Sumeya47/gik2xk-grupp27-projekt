@@ -1,3 +1,6 @@
+// Den här filen hanterar API-anrop till backend för produkter
+// Metoderna motsvarar backendens productService
+// Här använder vi axios för att kommunicera med servern
 import axios from "./api";
 
 // Hämta alla produkter

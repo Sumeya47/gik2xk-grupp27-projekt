@@ -1,6 +1,7 @@
+// Den här vyn används för att skapa en ny produkt
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { create, getOne, remove, update } from "../service/ProductService";
+import { create, getOne, update } from "../service/ProductService";
 
 import {
   Box,
@@ -26,7 +27,9 @@ function ProductEdit() {
   };
 
   const [product, setProduct] = useState(emptyProduct);
-
+//Körs när komponenten laddas eller när id ändras
+//Hämtar en produkt från backend om id finns
+//Om inget id finns skapas en tom produkt
   useEffect(() => {
     if (id) {
       getOne(id).then((data) => setProduct(data));
@@ -34,13 +37,14 @@ function ProductEdit() {
       setProduct(emptyProduct);
     }
   }, [id]);
-
+/* Hittar vart ändringa har gjorts genom att kolla vilket värde "name" 
+   och ändrar i produkten */
   function onChange(e) {
     const { name, value } = e.target;
     setProduct({ ...product, [name]: value });
   }
-
-    async function onSave() {
+/* Vid sparande skickas data till backend via ProductService */
+  async function onSave() {
   if (id) {
     await update(product);  //uppdatera om id finns
   } else {
@@ -50,6 +54,7 @@ function ProductEdit() {
 }
 
   return (
+  // Innehåller ett formulär där användaren fyller i produktens information
     <Container maxWidth="sm">
       <Typography variant="h4" gutterBottom>
         Skapa produkt
@@ -112,7 +117,7 @@ function ProductEdit() {
                 Tillbaka
               </Button>
             </Box>
-
+    
             <Button
               startIcon={<SaveIcon />}
               variant="contained"

@@ -1,3 +1,5 @@
+// Den här vyn visar alla produkter
+// Hämtar data från backend via ProductService
 import { useEffect, useState } from "react";
 import { getAll } from "../service/ProductService";
 import ProductList from "../components/ProductList";
@@ -8,15 +10,19 @@ function Products() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
+
   useEffect(() => {
+    //Hämtar alla produkter från backend när komponenten laddas
     getAll()
       .then((data) => {
         setProducts(data || []);
       })
+      //Sparar produkterna i state och hanterar eventuella fel
       .catch((err) => {
         console.error(err);
         setError(true);
       })
+      //Uppdaterar loading-status när hämtningen är klar
       .finally(() => {
         setLoading(false);
       });
@@ -29,7 +35,7 @@ function Products() {
         <Typography variant="h3" align="center" gutterBottom>
         Scented Candles</Typography> 
     </Box>
-
+    {/* Använder mui-komponent som visualiserar när sidan läs in */}
       {/* Loading */}
       {loading && (
         <Box textAlign="center" mt={4}>
