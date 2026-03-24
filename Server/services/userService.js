@@ -1,5 +1,6 @@
 const db = require("../models");
 
+//Hämta alla användare
 async function getAll() {
    try {
     const allUsers = await db.User.findAll();
@@ -9,7 +10,7 @@ async function getAll() {
    }
 }
 
-
+// Hämta en specifik användare
 async function getById(id) {
    try {
     const user = await db.User.findOne({
@@ -22,7 +23,7 @@ async function getById(id) {
    }
 }
 
-
+// Hämta en användares aktiva varukorg med produkter
 async function getCart(id) {
    try {
     const cart = await db.Cart.findOne({
@@ -33,6 +34,9 @@ async function getCart(id) {
      }]
    });
      if (!cart) return { status: 200, data: [] };
+
+     
+     //Formatera varukorgen med pris och antal
      const cartItems = cart.Products.map((p) => ({
         id: p.id,
         title: p.title,
@@ -47,6 +51,7 @@ async function getCart(id) {
    }
 }
 
+// Skapa en ny användare
 async function create(user) {
    try {
     const newUser = await db.User.create(user);
@@ -56,7 +61,7 @@ async function create(user) {
    }
 }
 
-
+// Updatera en användare
 async function update(user, id) {
     if ( !id) return { status: 422, data: "Id är obligatoriskt" };
    try {
@@ -67,7 +72,7 @@ async function update(user, id) {
    }
 }
 
-
+ // Ta bort en användare
 async function destroy(id) {
     if ( !id) return { status: 422, data: "Id är obligatoriskt" };
    try {

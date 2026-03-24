@@ -1,18 +1,8 @@
-/*const router = require("express").Router();
+const router = require("express").Router();
 const cartService = require("../services/cartService");
 
-router.post("/addProduct", (req, res) => {
-    const { userId, productId, amount} = req.body;
-    cartService.addProduct(userId, productId, amount).then((result) => {
-          res.status(result.status).json(result.data); 
-             })
-    });
 
- module.exports = router; **/
- 
- const router = require("express").Router();
-const cartService = require("../services/cartService");
-//hämta given användares kundvagn----
+// GET - Hämta given användares varukorg
 router.get("/:userId", (req, res) => {
   const { userId } = req.params;
 
@@ -21,7 +11,8 @@ router.get("/:userId", (req, res) => {
   });
 });
 
-//lägg till produkt
+
+// POST - Lägg till en produkt i varukorgen
 router.post("/addProduct", (req, res) => {
     const { userId, productId, amount} = req.body;
     cartService.addProduct(userId, productId, amount).then((result) => {
@@ -30,6 +21,7 @@ router.post("/addProduct", (req, res) => {
 });
 
 //ta bort produkt----
+// POST - Ta bort produkt från varukorgen
 router.post("/removeProduct", (req, res) => {
   const { userId, productId } = req.body;
 

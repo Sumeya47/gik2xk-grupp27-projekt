@@ -1,20 +1,21 @@
 const router = require("express").Router();
 const userService = require("../services/userService");
 
-
+// GET - Hämta alla användare
 router.get('/', (req, res) => {
     userService.getAll().then((result) => {
        res.status(result.status).json(result.data); 
     });
 });
 
+// GET - Hämta en specifik användare
 router.get("/:id", (req, res) => {
     const id = req.params.id;
     userService.getById(id).then((result) => {
           res.status(result.status).json(result.data); 
              })
     });
-
+// GET - Hämta en användares varukorg
 router.get("/:id/getCart", (req, res) => {
    const id = req.params.id;
     userService.getCart(id).then((result) => {
@@ -22,7 +23,7 @@ router.get("/:id/getCart", (req, res) => {
              })
     });
 
-
+// POST - Skapa en ny användare
 router.post('/', (req, res) => {
     const user = req.body;
         userService.create(user).then((result) => {
@@ -30,6 +31,7 @@ router.post('/', (req, res) => {
              })
     });
 
+    // PUT - Uppdatera en användare
 router.put("/:id", (req, res) => {
     const user = req.body;
     const id = req.params.id;
@@ -38,6 +40,7 @@ router.put("/:id", (req, res) => {
     });
 });
 
+// DELETE - Ta bort en användare
 router.delete("/:id", (req, res) => {
     const id = req.params.id;
     userService.destroy(id).then((result) => {
