@@ -40,23 +40,14 @@ function ProductEdit() {
     setProduct({ ...product, [name]: value });
   }
 
-/*  async function onSave() {
-    await create(product);
-    navigate("/", { replace: true });
-  } */
-
     async function onSave() {
   if (id) {
-    await update(product);  // ← uppdatera om id finns
+    await update(product);  //uppdatera om id finns
   } else {
-    await create(product);  // ← skapa ny om inget id
+    await create(product);  //skapa ny om inget id
   }
   navigate("/", { replace: true });
 }
-/*   async function onDelete() {
-    await remove(product.id);
-    navigate("/", { replace: true });
-  } */
 
   return (
     <Container maxWidth="sm">
@@ -120,17 +111,6 @@ function ProductEdit() {
               >
                 Tillbaka
               </Button>
-
-{/*               {id && (
-                <Button
-                  startIcon={<DeleteIcon />}
-                  variant="contained"
-                  color="error"
-                  onClick={onDelete}
-                >
-                  Ta bort
-                </Button>
-              )} */}
             </Box>
 
             <Button

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-/* import API from "../service/api"; */
 import { getAll } from "../service/ProductService";
 import ProductList from "../components/ProductList";
 import { Container, Typography, CircularProgress, Box } from "@mui/material";

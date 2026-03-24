@@ -10,17 +10,6 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import {
-  blueGrey,
-  deepPurple,
-  green,
-  grey,
-  orange,
-  purple,
-  red,
-  teal,
-  indigo
-} from '@mui/material/colors';
 
 
 const theme = createTheme({
